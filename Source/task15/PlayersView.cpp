@@ -7,7 +7,6 @@
 // Sets default values
 APlayersView::APlayersView()
 {
- 	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
 }
@@ -18,7 +17,6 @@ void APlayersView::BeginPlay()
 	Super::BeginPlay();
 	FActorSpawnParameters SpawnParams;
 	Ball = GetWorld()->SpawnActor<ABall>(BallToControl, SpawnLocation, SpawnRotation);
-	//AActor* SpawnBallRef = GetWorld()->SpawnActor<AActor>(BallToSpawn, SpawnLocation, SpawnRotation, SpawnParams);
 
 }
 
@@ -46,9 +44,6 @@ void APlayersView::StartMoving()
 }
 void APlayersView::SwitchGravity()
 {
-	//ABall* BallRef = FindObject<ABall>(BallRef, "Ball");
-	//ABall::SwitchGravityBall();
-	//BallToControl->SwitchGravityBall();
 	UE_LOG(LogTemp, Warning, TEXT("TRTdfadfargergergreRT"));
 	Ball->SwitchGravityBall();
 }

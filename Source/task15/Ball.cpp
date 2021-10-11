@@ -20,9 +20,9 @@ ABall::ABall()
 	//CapsuleComp->SetEnableGravity(true);
 
 	
-	MoveComp = CreateDefaultSubobject<UActorComponent>(TEXT("MoveComp"));
+	//MoveComp = CreateDefaultSubobject<UActorComponent>(TEXT("MoveComp"));
 
-	BallMoving = CreateDefaultSubobject<UMovementComponent>(TEXT("Ball Moving"));
+	//BallMoving = CreateDefaultSubobject<UMovementComponent>(TEXT("Ball Moving"));
 
 
 
@@ -67,6 +67,6 @@ void ABall::StartMove(float Force)
 	 //= { 0.0f, 100.0f, 0.0f };
 	 FVector ToImpulse = this->GetActorRightVector();
 	//CapsuleComp->AddRadialImpulse(ToImpulse, 10, 10, ERadialImpulseFalloff::RIF_Constant);
-	CapsuleComp->AddForce(ToImpulse * Force * BallMesh->GetMass());
+	 CapsuleComp->AddForce(ToImpulse * Force * BallMesh->GetMass());
 
 }
