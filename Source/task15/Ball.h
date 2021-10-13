@@ -8,6 +8,7 @@
 
 class UCapsuleComponent;
 class UMovementComponent;
+class UGravitySwitcher;
 
 UCLASS()
 class TASK15_API ABall : public AActor
@@ -24,13 +25,11 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 		UStaticMeshComponent* BallMesh;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-		UMovementComponent* BallMoving;
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-		UActorComponent* GravitySwitcher;
+		UGravitySwitcher* GravitySwitcher;
 
 	ABall();
 	void SwitchGravityBall();
-	void StartMove(float Force);
+	void StartMove(float Speed);
 
 protected:
 	// Called when the game starts or when spawned

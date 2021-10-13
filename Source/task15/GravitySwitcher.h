@@ -6,6 +6,7 @@
 #include "Components/ActorComponent.h"
 #include "GravitySwitcher.generated.h"
 
+class ABall;
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class TASK15_API UGravitySwitcher : public UActorComponent
 {
@@ -18,11 +19,10 @@ public:
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
-
+	ABall* TargetActor;
 public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 	
 	void SwitchGravity();
-	void BindToInput();
 };

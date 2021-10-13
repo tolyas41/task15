@@ -6,61 +6,40 @@
 #include "GameFramework/MovementComponent.h"
 #include "GravitySwitcher.h"
 
-// Sets default values
 ABall::ABall()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
-	//RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("Root Component"));
 	CapsuleComp = CreateDefaultSubobject<UCapsuleComponent>(TEXT("Capsule"));
-	//CapsuleComp->SetupAttachment(RootComponent);
+	RootComponent = CapsuleComp;
 
 	BallMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Ball Mesh"));
 	BallMesh->SetupAttachment(CapsuleComp);
-	//CapsuleComp->SetEnableGravity(true);
 
-	
 	GravitySwitcher = CreateDefaultSubobject<UGravitySwitcher>(TEXT("Gravity Switcher"));
-
-	//BallMoving = CreateDefaultSubobject<UMovementComponent>(TEXT("Ball Moving"));
-
-
-
-	CapsuleComp->SetSimulatePhysics(true);
-	CapsuleComp->SetEnableGravity(false);
 }
 
-// Called when the game starts or when spawned
 void ABall::BeginPlay()
 {
 	Super::BeginPlay();
+	CapsuleComp->SetSimulatePhysics(true);
+	CapsuleComp->SetEnableGravity(false);
+
 }
 
-// Called every frame
 void ABall::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 
 
 void ABall::SwitchGravityBall()
 {
-	if (CapsuleComp->IsGravityEnabled())
-	{
-		CapsuleComp->SetEnableGravity(false);
-	}
-	else
-	{
-		CapsuleComp->SetEnableGravity(true);
-	}
+	GravitySwitcher->SwitchGravity();
 }
 
-void ABall::StartMove(float Force)
+void ABall::StartMove(float Speed)
 {
-
 	 FVector ToImpulse = this->GetActorRightVector();
-	 CapsuleComp->AddForce(ToImpulse * Force * BallMesh->GetMass());
-
+	 CapsuleComp->AddForce(ToImpulse * Speed * BallMesh->GetMass());
 }
