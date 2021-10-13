@@ -26,7 +26,7 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 		UMovementComponent* BallMoving;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-		UActorComponent* MoveComp;
+		UActorComponent* GravitySwitcher;
 
 	ABall();
 	void SwitchGravityBall();
@@ -39,5 +39,4 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-
 };

@@ -4,6 +4,7 @@
 #include "Ball.h"
 #include "Components/CapsuleComponent.h"
 #include "GameFramework/MovementComponent.h"
+#include "GravitySwitcher.h"
 
 // Sets default values
 ABall::ABall()
@@ -20,24 +21,20 @@ ABall::ABall()
 	//CapsuleComp->SetEnableGravity(true);
 
 	
-	//MoveComp = CreateDefaultSubobject<UActorComponent>(TEXT("MoveComp"));
+	GravitySwitcher = CreateDefaultSubobject<UGravitySwitcher>(TEXT("Gravity Switcher"));
 
 	//BallMoving = CreateDefaultSubobject<UMovementComponent>(TEXT("Ball Moving"));
 
 
 
+	CapsuleComp->SetSimulatePhysics(true);
+	CapsuleComp->SetEnableGravity(false);
 }
 
 // Called when the game starts or when spawned
 void ABall::BeginPlay()
 {
-	CapsuleComp->SetSimulatePhysics(true);
-	CapsuleComp->SetEnableGravity(false);
 	Super::BeginPlay();
-	//UStaticMeshComponent* MeshComp = Cast<UStaticMeshComponent>(RootComponent);
-	//virtual void AddRadialImpulse(FVector Origin, float Radius, float Strength, enum ERadialImpulseFalloff Falloff, bool bVelChange = false);
-
-
 }
 
 // Called every frame
@@ -47,16 +44,15 @@ void ABall::Tick(float DeltaTime)
 
 }
 
+
 void ABall::SwitchGravityBall()
 {
 	if (CapsuleComp->IsGravityEnabled())
 	{
-		//CapsuleComp->SetSimulatePhysics(false);
 		CapsuleComp->SetEnableGravity(false);
 	}
 	else
 	{
-		//CapsuleComp->SetSimulatePhysics(true);
 		CapsuleComp->SetEnableGravity(true);
 	}
 }
@@ -64,9 +60,7 @@ void ABall::SwitchGravityBall()
 void ABall::StartMove(float Force)
 {
 
-	 //= { 0.0f, 100.0f, 0.0f };
 	 FVector ToImpulse = this->GetActorRightVector();
-	//CapsuleComp->AddRadialImpulse(ToImpulse, 10, 10, ERadialImpulseFalloff::RIF_Constant);
 	 CapsuleComp->AddForce(ToImpulse * Force * BallMesh->GetMass());
 
 }
