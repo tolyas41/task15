@@ -6,16 +6,13 @@
 #include "Engine/TriggerVolume.h"
 #include "BallTrigger.generated.h"
 
-/**
- * 
- */
+
 UCLASS()
 class TASK15_API ABallTrigger : public ATriggerVolume
 {
 	GENERATED_BODY()
 
 public:
-
 	ABallTrigger();
 
 protected:
@@ -23,5 +20,6 @@ protected:
 
 private:
 	UFUNCTION()
-		void OnOverlap(class AActor* OverlappedActor, class AActor* OtherActor);
+	void OnOverlap(class AActor* OverlappedActor, class AActor* OtherActor);
+
 };

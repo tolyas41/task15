@@ -6,7 +6,6 @@
 void AGravityGameMode::BeginPlay()
 {
 	Super::BeginPlay();
-
 }
 
 

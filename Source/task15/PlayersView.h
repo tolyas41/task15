@@ -6,6 +6,7 @@
 #include "GameFramework/Pawn.h"
 #include "PlayersView.generated.h"
 
+
 class ABall;
 
 UCLASS()
@@ -13,38 +14,32 @@ class TASK15_API APlayersView : public APawn
 {
 	GENERATED_BODY()
 
-public:
-	// Sets default values for this pawn's properties
-	APlayersView();
-
 protected:
-	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 private:
-
-	TArray<AActor*> FoundActors;
+	TArray<AActor*> FoundBalls;
 
 public:	
+	APlayersView();
 
 	UPROPERTY(EditAnywhere, Category = "SpawnLocation")
-		FVector SpawnLocation;
+	FVector SpawnLocation;
 
 	UPROPERTY(EditAnywhere, Category = "SpawnLocation")
-		FRotator SpawnRotation;
+	FRotator SpawnRotation;
 
 	UPROPERTY(EditAnywhere, Category = "BallSpeed")
-		float BallSpeed = 15000.0f;
+	float BallSpeed = 15000.0f;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Control")
-		TSubclassOf<ABall> BallToControl;
+	TSubclassOf<ABall> BallToControl;
 
 	UPROPERTY()
-		ABall* Ball;
+	ABall* Ball;
 
 	virtual void Tick(float DeltaTime) override;
 
-	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	void StartMoving();

@@ -1,30 +1,30 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "Ball.h"
 #include "Components/CapsuleComponent.h"
 #include "GameFramework/MovementComponent.h"
-#include "GravitySwitcher.h"
+#include "GravitySwitcherComponent.h"
+
 
 ABall::ABall()
 {
 	PrimaryActorTick.bCanEverTick = true;
 
-	CapsuleComp = CreateDefaultSubobject<UCapsuleComponent>(TEXT("Capsule"));
-	RootComponent = CapsuleComp;
+	CapsuleComponent = CreateDefaultSubobject<UCapsuleComponent>(TEXT("Capsule Component"));
+	RootComponent = CapsuleComponent;
 
-	BallMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Ball Mesh"));
-	BallMesh->SetupAttachment(CapsuleComp);
+	BallMeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Ball Mesh Component"));
+	BallMeshComponent->SetupAttachment(CapsuleComponent);
 
-	GravitySwitcher = CreateDefaultSubobject<UGravitySwitcher>(TEXT("Gravity Switcher"));
+	GravitySwitcherComponent = CreateDefaultSubobject<UGravitySwitcherComponent>(TEXT("Gravity Switcher Component"));
 }
 
 void ABall::BeginPlay()
 {
 	Super::BeginPlay();
-	CapsuleComp->SetSimulatePhysics(true);
-	CapsuleComp->SetEnableGravity(false);
 
+	CapsuleComponent->SetSimulatePhysics(true);
+	CapsuleComponent->SetEnableGravity(false);
 }
 
 void ABall::Tick(float DeltaTime)
@@ -35,11 +35,11 @@ void ABall::Tick(float DeltaTime)
 
 void ABall::SwitchGravityBall()
 {
-	GravitySwitcher->SwitchGravity();
+	GravitySwitcherComponent->SwitchGravity();
 }
 
 void ABall::StartMove(float Speed)
 {
 	 FVector ToImpulse = this->GetActorRightVector();
-	 CapsuleComp->AddForce(ToImpulse * Speed * BallMesh->GetMass());
+	 CapsuleComponent->AddForce(ToImpulse * Speed * BallMeshComponent->GetMass());
 }

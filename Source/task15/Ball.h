@@ -8,34 +8,32 @@
 
 class UCapsuleComponent;
 class UMovementComponent;
-class UGravitySwitcher;
+class UGravitySwitcherComponent;
+
 
 UCLASS()
 class TASK15_API ABall : public AActor
 {
 	GENERATED_BODY()
-	
-private:
-
 
 public:	
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UCapsuleComponent* CapsuleComponent;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-		UCapsuleComponent* CapsuleComp;
+	UStaticMeshComponent* BallMeshComponent;
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-		UStaticMeshComponent* BallMesh;
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-		UGravitySwitcher* GravitySwitcher;
+	UGravitySwitcherComponent* GravitySwitcherComponent;
 
 	ABall();
+
+	virtual void Tick(float DeltaTime) override;
+
 	void SwitchGravityBall();
 	void StartMove(float Speed);
 
 protected:
-	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
 };

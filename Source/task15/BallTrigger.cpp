@@ -1,6 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "BallTrigger.h"
 
 ABallTrigger::ABallTrigger()
@@ -11,7 +10,6 @@ ABallTrigger::ABallTrigger()
 void ABallTrigger::BeginPlay()
 {
 	Super::BeginPlay();
-
 }
 
 void ABallTrigger::OnOverlap(class AActor* OverlappedActor, class AActor* OtherActor)
