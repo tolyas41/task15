@@ -21,6 +21,10 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+private:
+
+	TArray<AActor*> FoundActors;
+
 public:	
 
 	UPROPERTY(EditAnywhere, Category = "SpawnLocation")
@@ -30,13 +34,13 @@ public:
 		FRotator SpawnRotation;
 
 	UPROPERTY(EditAnywhere, Category = "BallSpeed")
-		float BallSpeed = 5000.0f;
+		float BallSpeed = 15000.0f;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Control")
-	TSubclassOf<ABall> BallToControl;
+		TSubclassOf<ABall> BallToControl;
 
 	UPROPERTY()
-	ABall* Ball;
+		ABall* Ball;
 
 	virtual void Tick(float DeltaTime) override;
 

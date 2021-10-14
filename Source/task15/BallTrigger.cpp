@@ -3,8 +3,6 @@
 
 #include "BallTrigger.h"
 
-#define PrintString(String) GEngine->AddOnScreenDebugMessage(-1, 1.0f, FColor::White, String)
-
 ABallTrigger::ABallTrigger()
 {
 	OnActorBeginOverlap.AddDynamic(this, &ABallTrigger::OnOverlap);	
@@ -20,6 +18,8 @@ void ABallTrigger::OnOverlap(class AActor* OverlappedActor, class AActor* OtherA
 {
 	if (OtherActor && (OtherActor != this))
 	{
-		PrintString("Win!");
+		static int32 score = 0;
+		GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Red, FString::Printf(TEXT("Score : %i"), score));
+		score++;
 	}
 }

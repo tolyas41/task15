@@ -6,9 +6,6 @@
 #include "GameFramework/GameModeBase.h"
 #include "GravityGameMode.generated.h"
 
-/**
- * 
- */
 UCLASS()
 class TASK15_API AGravityGameMode : public AGameModeBase
 {

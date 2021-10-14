@@ -3,6 +3,9 @@
 
 #include "PlayersView.h"
 #include "Ball.h"
+#include "EngineUtils.h"
+#include "Runtime/Engine/Classes/Kismet/GameplayStatics.h"
+
 
 // Sets default values
 APlayersView::APlayersView()
@@ -15,7 +18,8 @@ APlayersView::APlayersView()
 void APlayersView::BeginPlay()
 {
 	Super::BeginPlay();
-	Ball = GetWorld()->SpawnActor<ABall>(BallToControl, SpawnLocation, SpawnRotation);
+
+	UGameplayStatics::GetAllActorsOfClass(GetWorld(), BallToControl, FoundActors);
 }
 
 // Called every frame
@@ -34,10 +38,16 @@ void APlayersView::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 
 void APlayersView::StartMoving()
 {
-	Ball->StartMove(BallSpeed);
+	for (auto ball : FoundActors)
+	{
+		Cast<ABall>(ball)->StartMove(BallSpeed);
+	}
 }
 
 void APlayersView::SwitchGravity()
 {
-	Ball->SwitchGravityBall();
+	for (auto ball : FoundActors)
+	{
+		Cast<ABall>(ball)->SwitchGravityBall();
+	}
 }
