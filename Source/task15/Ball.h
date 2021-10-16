@@ -10,22 +10,12 @@ class UCapsuleComponent;
 class UMovementComponent;
 class UGravitySwitcherComponent;
 
-
 UCLASS()
 class TASK15_API ABall : public AActor
 {
 	GENERATED_BODY()
 
 public:	
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	UCapsuleComponent* CapsuleComponent;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	UStaticMeshComponent* BallMeshComponent;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	UGravitySwitcherComponent* GravitySwitcherComponent;
-
 	ABall();
 
 	virtual void Tick(float DeltaTime) override;
@@ -36,4 +26,13 @@ public:
 protected:
 	virtual void BeginPlay() override;
 
+public:
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UCapsuleComponent* CapsuleComponent;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UStaticMeshComponent* BallMeshComponent;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UGravitySwitcherComponent* GravitySwitcherComponent;
 };

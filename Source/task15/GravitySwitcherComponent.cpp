@@ -22,17 +22,17 @@ void UGravitySwitcherComponent::TickComponent(float DeltaTime, ELevelTick TickTy
 
 void UGravitySwitcherComponent::SwitchGravity()
 {
-	if (GetOwner<ABall>())
+	if (ABall* Ball = GetOwner<ABall>())
 	{
-		if (GetOwner<ABall>()->CapsuleComponent->IsGravityEnabled())
+		if (Ball->CapsuleComponent->IsGravityEnabled())
 		{
 			UE_LOG(LogTemp, Warning, TEXT("grav off"));
-			GetOwner<ABall>()->CapsuleComponent->SetEnableGravity(false);
+			Ball->CapsuleComponent->SetEnableGravity(false);
 		}
 		else
 		{
 			UE_LOG(LogTemp, Warning, TEXT("grav on"));
-			GetOwner<ABall>()->CapsuleComponent->SetEnableGravity(true);
+			Ball->CapsuleComponent->SetEnableGravity(true);
 		}
 	}
 }

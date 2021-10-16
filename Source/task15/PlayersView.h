@@ -17,12 +17,16 @@ class TASK15_API APlayersView : public APawn
 protected:
 	virtual void BeginPlay() override;
 
-private:
-	TArray<AActor*> FoundBalls;
-
 public:	
 	APlayersView();
 
+	virtual void Tick(float DeltaTime) override;
+	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+	void StartMoving();
+	void SwitchGravity();
+
+private:
 	UPROPERTY(EditAnywhere, Category = "SpawnLocation")
 	FVector SpawnLocation;
 
@@ -30,18 +34,13 @@ public:
 	FRotator SpawnRotation;
 
 	UPROPERTY(EditAnywhere, Category = "BallSpeed")
-	float BallSpeed = 15000.0f;
-
-	UPROPERTY(EditDefaultsOnly, Category = "Control")
-	TSubclassOf<ABall> BallToControl;
+	float ForceToBall = 15000.0f;
 
 	UPROPERTY()
 	ABall* Ball;
 
-	virtual void Tick(float DeltaTime) override;
+	UPROPERTY(EditDefaultsOnly, Category = "Control")
+	TSubclassOf<ABall> BallToControl;
 
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-
-	void StartMoving();
-	void SwitchGravity();
+	TArray<AActor*> FoundBalls;
 };

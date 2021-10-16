@@ -33,15 +33,15 @@ void APlayersView::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 
 void APlayersView::StartMoving()
 {
-	for (auto ball : FoundBalls)
+	for (const auto& ball : FoundBalls)
 	{
-		Cast<ABall>(ball)->StartMove(BallSpeed);
+		Cast<ABall>(ball)->StartMove(ForceToBall);
 	}
 }
 
 void APlayersView::SwitchGravity()
 {
-	for (auto ball : FoundBalls)
+	for (const auto& ball : FoundBalls)
 	{
 		Cast<ABall>(ball)->SwitchGravityBall();
 	}

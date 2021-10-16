@@ -22,9 +22,9 @@ ABall::ABall()
 void ABall::BeginPlay()
 {
 	Super::BeginPlay();
-
 	CapsuleComponent->SetSimulatePhysics(true);
 	CapsuleComponent->SetEnableGravity(false);
+
 }
 
 void ABall::Tick(float DeltaTime)
@@ -38,8 +38,8 @@ void ABall::SwitchGravityBall()
 	GravitySwitcherComponent->SwitchGravity();
 }
 
-void ABall::StartMove(float Speed)
+void ABall::StartMove(float Force)
 {
 	 FVector ToImpulse = this->GetActorRightVector();
-	 CapsuleComponent->AddForce(ToImpulse * Speed * BallMeshComponent->GetMass());
+	 CapsuleComponent->AddForce(ToImpulse * Force * BallMeshComponent->GetMass());
 }

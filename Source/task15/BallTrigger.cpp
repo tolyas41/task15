@@ -10,13 +10,13 @@ ABallTrigger::ABallTrigger()
 void ABallTrigger::BeginPlay()
 {
 	Super::BeginPlay();
+	score = 0;
 }
 
 void ABallTrigger::OnOverlap(class AActor* OverlappedActor, class AActor* OtherActor)
 {
 	if (OtherActor && (OtherActor != this))
 	{
-		static int32 score = 0;
 		GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Red, FString::Printf(TEXT("Score : %i"), score));
 		score++;
 	}
